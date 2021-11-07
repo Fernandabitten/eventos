@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <link rel="icon" href="../img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <title>Eventos</title>
+</head>
+
+<body>
+  <div id="textareawrite">
+    <h1>Add evento</h1>
+     <span>Nome</span>    
+    <input type="text" id="event-name" />
+    <span>Descrição</span>
+    <input type="text" id="event-description" />
+    <span>Data</span>
+    <input type="date" id="event-date" min="2018-06-07">
+    <span>Hora</span>
+    <input type="number" id="event-time" min="0" max="23">
+    <span>Localização</span>
+    <input type="text" id="event-place" />
+    <button id="send-events">Cadastrar</button>
+    <button id="cancel-events">Sair</button>
+  </div>
+
+  <div id="textareaUser">
+    <h1>Add Usuário</h1>
+    <span>Nome Completo</span>
+    <input type="text" id="fullname" />
+    <span>Nome de Usuário</span>
+    <input type="text" id="username" />
+    <span>Senha</span>
+    <input type="password" id="password">
+    <button id="send-user">Cadastrar</button>
+    <button id="cancel-user">Sair</button>
+  </div>
+
+  <div id="textareaListUsers">
+    <h1>Usuários Cadastrados</h1>
+    <div id="users"></div>    
+    <button id="home">Sair</button>
+  </div >
+
+  <div id="textareaRegisterEvents">
+    <h1>Cadastrar-se nesse Evento</h1>
+      <button type='button' id="confirmarCadastrarNoEvento-button">Confirmar Cadastro</button>   
+    <button id="sair">Sair</button>
+  </div>
+
+  <div id="container">
+    <header>
+      <div>
+        <img id="logo" src="../img/logo.png" alt="Eventos logo">
+      </div>
+      <div></div><img alt="">    
+      <div>
+        <button id="logout-button">Logout</button>
+      </div>
+    </header>
+    <div id="title">
+      <h1>Administre Seus Eventos</h1>
+    </div>
+    <div id="content">
+      <div>
+        <button type='button' id="event-button">Add Evento</button>
+      </div>
+      <div>
+        <button type='button' id="user-button">Add Usuário</button>
+      </div>
+      <div>
+        <button type='button' id="listUsers-button"> Ver Usuários</button>
+      </div>
+    </div>
+    <div id="allEvents">
+      <div id="events"></div>  
+    </div>
+    <script type="text/javascript" src="/public/qrcode.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/admin/script.js"></script>
+  </div>
+</body>
+</html>

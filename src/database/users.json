@@ -1,0 +1,37 @@
+[
+  {
+    "username": "admin",
+    "fullname": "Admin da Silva",
+    "hash": "$2b$13$RET.spTsRNobxELoAF.bgeGXX200CTVCfGyAZoWYL6kcSOdOr5EDq",
+    "salt": "$2b$13$RET.spTsRNobxELoAF.bge",
+    "usertype": "admin"
+  },
+  {
+    "username": "ermerson",
+    "fullname": "ERMERSON CAMARAO LIMA",
+    "hash": "$2b$13$bwDEe0ujWNJNTjXFhC/s5ev6U.gsWkVpapE5tictrr0EDMarljOC.",
+    "salt": "$2b$13$bwDEe0ujWNJNTjXFhC/s5e",
+    "usertype": "user"
+  },
+  {
+    "username": "fernanda",
+    "fullname": "FERNANDA BITTENCOURT",
+    "hash": "$2b$13$33cHSBZoFP1hz.ofKZw0lOrfMqJU.jaazh87IX1nmN20QYQOAnzXm",
+    "salt": "$2b$13$33cHSBZoFP1hz.ofKZw0lO",
+    "usertype": "user"
+  },
+  {
+    "username": "teste",
+    "fullname": "Teste da Silva",
+    "hash": "$2b$13$sggxAavurLnUhh1hm4J5O.HC8VOf.BzRRy3yM0TFBxH3AFdPjnjoC",
+    "salt": "$2b$13$sggxAavurLnUhh1hm4J5O.",
+    "usertype": "user"
+  },
+  {
+    "username": "jose",
+    "fullname": "Jose da Silva",
+    "hash": "$2b$13$e7GhiyKbjmIDO1DKdFqJzu0z5CxX1Jy73eKJXqdYOV2mah2UxIMyq",
+    "salt": "$2b$13$e7GhiyKbjmIDO1DKdFqJzu",
+    "usertype": "user"
+  }
+]
