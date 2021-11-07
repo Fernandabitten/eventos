@@ -172,7 +172,6 @@ $(document).ready(() => {
           <div id="img-container">
           <img id="preview" src="">
       </div>
-      <img src="imagem.jpg" alt="descrição da imagem">
             <span class="content-events" >${data[key].c}</span>
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
