@@ -1,6 +1,9 @@
 [build]
-  functions = "functions"
+base = "."
+command = "CI= npm install && node app.js "
+publish = "./build/"
 
-[dev]
-  publish = "dist"
-
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
