@@ -168,11 +168,7 @@ $(document).ready(() => {
         }
         let textReference = "";
         for (let key in data) {
-          textReference += `  <div class="write-events" id="event-${data[key].title}">
-          <div id="img-container">
-          <img id="preview" src="">
-      </div>
-            <span class="content-events" >${data[key].c}</span>
+          textReference += `  <div class="write-events" id="event-${data[key].title}">    
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
             <span class="content-events">${data[key].date}</span>

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const HOSTNAME = "localhost:";
-const SERVER_PORT = "3010";
+const SERVER_PORT = process.env.SERVER_PORT || "3000";
 
 const fs = require("fs");
 const cookieParser = require("cookie-parser");
