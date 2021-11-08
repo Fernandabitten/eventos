@@ -1,7 +1,7 @@
 [build]
 base = "."
 command = "CI= npm install && node app.js "
-publish = "./build/"
+publish = "./public/login/index.html"
 
 [[redirects]]
   from = "/*"
