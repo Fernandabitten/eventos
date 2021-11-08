@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const HOSTNAME = "localhost:";
-const SERVER_PORT = process.env.SERVER_PORT || "3000";
+const SERVER_PORT = process.env.SERVER_PORT || "3005";
 
 const fs = require("fs");
 const cookieParser = require("cookie-parser");
@@ -186,6 +186,73 @@ app.post("/register-user-event", async (req, res) => {
   }
 });
 
+app.post("/check-event", (req, res) => {
+  const eventId = req.body.eventId;
+  const eventTitle = req.body.eventTitle;  
+  const { cookies } = req;
+  const session = SESSIONS.find(
+    (element) => element.token == cookies.session_id
+  );
+  const username = session.username;
+
+  readFile(EVENTS_DIR).then(async (eventsDB) => {
+    const eventIndex = eventsDB.findIndex((element) => element.id == eventId);
+
+    if (
+      eventsDB[eventIndex].users.some(
+        (element) => element.username === session.username
+      )
+    ) {
+      const userIndex = eventsDB[eventIndex].users.findIndex(
+        (element) => element.username == session.username
+      );
+      if (eventsDB[eventIndex].users[userIndex].used === false) {
+        res.send({
+          qrcode: eventsDB[eventIndex].users[userIndex].qrcode,
+          htmlText: `
+            <div id="event-confirmation-box" class="confirm-events">
+              <h1>Confirmar presença</h1>
+              <p>Olá, ${username}</p>
+              <p>Apresente esse QR code na entrada do evento para registrar sua presença.</p>
+              <p>Obs: esse QR code só poderá ser lido uma única vez</p>
+              <h2>${eventTitle}</h2>
+              <div id="placeHolder"></div>
+              <button id="sair">Voltar</button>
+            </div>
+          `,
+          exists: true,
+          used: eventsDB[eventIndex].users[userIndex].used,
+        });
+      } else {
+        res.send({
+          qrcode: eventsDB[eventIndex].users[userIndex].qrcode,
+          htmlText: `
+            <div id="event-confirmation-box" class="confirm-events">
+              <h1>Sua participação já foi confirmada nesse evento!</h1>
+              <h2>${eventTitle}</h2>
+              <button id="sair">Voltar</button>
+            </div>
+          `,
+          exists: true,
+          used: eventsDB[eventIndex].users[userIndex].used,
+        });
+      }
+    } else {
+      res.send({
+        htmlText: `
+          <div id="event-confirmation-box" class="confirm-events">
+            <h1>Cadastrar-se neste evento</h1>
+            <h2>${eventTitle}</h2>
+            <button class="check-button" type='button' id="confirmarCadastrarNoEvento-button">Confirmar Cadastro</button>   
+            <button id="sair">Voltar</button>
+          </div>
+        `,
+        exists: false,
+      });
+    }
+  });
+});
+
 app.get("/user", (req, res) => {
   readFile(USERS_DIR)
     .then((usersDB) => {
@@ -194,6 +261,69 @@ app.get("/user", (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: err.message });
     });
+});
+
+app.get("/log-out", (req, res) => {
+  const cookieReference = req.cookies.session_id;
+  const session = SESSIONS.filter((e) => {
+    return e.token !== cookieReference;
+  });
+  SESSIONS = session;
+  res.clearCookie("session_id");
+  console.log("log out SESSIONS: ", SESSIONS);
+});
+
+app.get("/verify", (req, res) => {
+  const cookieReference = req.cookies.session_id;
+  const verify = () => {
+    const exists = SESSIONS.some((e) => {
+      if (e.token == cookieReference) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return exists;
+  };
+  if (verify() === false) {
+    res.send("/");
+  }
+});
+
+app.get("/check-qrcode/:username/:eventId", (req, res) => {
+  const { eventId } = req.params;
+  const { username } = req.params;
+
+  readFile(EVENTS_DIR).then(async (eventsDB) => {
+    const eventIndex = eventsDB.findIndex((element) => element.id == eventId);
+    const userIndex = eventsDB[eventIndex].users.findIndex(
+      (element) => element.username == username
+    );
+    if (eventsDB[eventIndex].users[userIndex].used === false) {
+      eventsDB[eventIndex].users[userIndex].checkDate = new Date().getTime();
+      eventsDB[eventIndex].users[userIndex].used = true;
+      eventsDB[eventIndex].users[userIndex].qrcode = "";
+      saveFile(EVENTS_DIR, eventsDB).then((result) => {
+        res.send(`
+        <div id="checkQrcode">
+          <h1>${fullname}, sua participação no evento ${eventsDB[eventIndex].title} foi confirmada.</h1>
+          <h2>Descrição:</h2>
+          <p>${eventsDB[eventIndex].description}</p>
+          <h2>Data do evento:</h2>
+          <p>${eventsDB[eventIndex].date}</p>
+          <h2>Horário de início:</h2>
+          <p>${eventsDB[eventIndex].time} h</p>c
+          <h2>Endereço:</h2>
+          <p>${eventsDB[eventIndex].location}</p>
+        </div>
+        `);
+      });
+    } else {
+      res
+        .status(403)
+        .json({ message: "Houve um erro na verificação dos dados." });
+    }
+  });
 });
 
 // ------ FUNCOES UTEIS -------------//
@@ -241,134 +371,6 @@ const saveFile = (fileName, data) => {
     });
   });
 };
-
-app.get("/log-out", (req, res) => {
-  const cookieReference = req.cookies.session_id;
-  const session = SESSIONS.filter((e) => {
-    return e.token !== cookieReference;
-  });
-  SESSIONS = session;
-  res.clearCookie("session_id");
-  console.log("log out SESSIONS: ", SESSIONS);
-});
-
-app.get("/verify", (req, res) => {
-  const cookieReference = req.cookies.session_id;
-  const verify = () => {
-    const exists = SESSIONS.some((e) => {
-      if (e.token == cookieReference) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return exists;
-  };
-  if (verify() === false) {
-    res.send("/");
-  }
-});
-
-app.post("/check-event", (req, res) => {
-  const eventId = req.body.eventId;
-  const eventTitle = req.body.eventTitle;
-  const { cookies } = req;
-  const session = SESSIONS.find(
-    (element) => element.token == cookies.session_id
-  );
-
-  readFile(EVENTS_DIR).then(async (eventsDB) => {
-    const eventIndex = eventsDB.findIndex((element) => element.id == eventId);
-
-    if (
-      eventsDB[eventIndex].users.some(
-        (element) => element.username === session.username
-      )
-    ) {
-      const userIndex = eventsDB[eventIndex].users.findIndex(
-        (element) => element.username == session.username
-      );
-      if (eventsDB[eventIndex].users[userIndex].used === false) {
-        res.send({
-          qrcode: eventsDB[eventIndex].users[userIndex].qrcode,
-          htmlText: `
-            <div id="event-confirmation-box" class="confirm-events">
-              <h1>Confirmar presença</h1>
-              <p>Apresente esse QR code na entrada do evento para registrar sua presença.</p>
-              <p>Obs: esse QR code só poderá ser lido uma única vez</p>
-              <h2>${eventTitle}</h2>
-              <div id="placeHolder"></div>
-              <button id="sair">Voltar</button>
-            </div>
-          `,
-          exists: true,
-          used: eventsDB[eventIndex].users[userIndex].used,
-        });
-      } else {
-        res.send({
-          qrcode: eventsDB[eventIndex].users[userIndex].qrcode,
-          htmlText: `
-            <div id="event-confirmation-box" class="confirm-events">
-              <h1>Sua participação já foi confirmada nesse evento!</h1>
-              <h2>${eventTitle}</h2>
-              <button id="sair">Voltar</button>
-            </div>
-          `,
-          exists: true,
-          used: eventsDB[eventIndex].users[userIndex].used,
-        });
-      }
-    } else {
-      res.send({
-        htmlText: `
-          <div id="event-confirmation-box" class="confirm-events">
-            <h1>Cadastrar-se neste evento</h1>
-            <h2>${eventTitle}</h2>
-            <button class="check-button" type='button' id="confirmarCadastrarNoEvento-button">Confirmar Cadastro</button>   
-            <button id="sair">Voltar</button>
-          </div>
-        `,
-        exists: false,
-      });
-    }
-  });
-});
-
-app.get("/check-qrcode/:username/:eventId", (req, res) => {
-  const { eventId } = req.params;
-  const { username } = req.params;
-
-  readFile(EVENTS_DIR).then(async (eventsDB) => {
-    const eventIndex = eventsDB.findIndex((element) => element.id == eventId);
-    const userIndex = eventsDB[eventIndex].users.findIndex(
-      (element) => element.username == username
-    );
-    if (eventsDB[eventIndex].users[userIndex].used === false) {
-      eventsDB[eventIndex].users[userIndex].checkDate = new Date().getTime();
-      eventsDB[eventIndex].users[userIndex].used = true;
-      eventsDB[eventIndex].users[userIndex].qrcode = "";
-      saveFile(EVENTS_DIR, eventsDB).then((result) => {
-        res.send(`
-        <div id="checkQrcode">
-          <h1>${fullname}, sua participação no evento ${eventsDB[eventIndex].title} foi confirmada.</h1>
-          <h2>Descrição:</h2>
-          <p>${eventsDB[eventIndex].description}</p>
-          <h2>Data do evento:</h2>
-          <p>${eventsDB[eventIndex].date}</p>
-          <h2>Horário de início:</h2>
-          <p>${eventsDB[eventIndex].time} h</p>c
-          <h2>Endereço:</h2>
-          <p>${eventsDB[eventIndex].location}</p>
-        </div>
-        `);
-      });
-    } else {
-      res
-        .status(403)
-        .json({ message: "Houve um erro na verificação dos dados." });
-    }
-  });
-});
 
 app.listen(SERVER_PORT, () => {
   console.log(`Server running at http://${HOSTNAME}${SERVER_PORT}/`);

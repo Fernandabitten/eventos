@@ -28,5 +28,25 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="/public/login/script.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAsUrvN6M15ndmUDn6GLk41d7Dgr6ZsUMs",
+      authDomain: "eventos-d65a4.firebaseapp.com",
+      projectId: "eventos-d65a4",
+      storageBucket: "eventos-d65a4.appspot.com",
+      messagingSenderId: "599824679163",
+      appId: "1:599824679163:web:56ace6c7e14ba31d53f05e"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+
 </body>
 </html>

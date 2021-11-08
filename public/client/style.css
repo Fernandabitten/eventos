@@ -105,11 +105,15 @@ html{
     width: 200px;
     height: 35px;
     color: #fffffff2;
+    font-family: 'Staatliches';
     font-size: 20px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     margin: 1vh auto
+  }
+  .event-button{
+    background-color: #38A5CE;
   }
   .check-button{
     background-color: #014056;

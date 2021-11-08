@@ -30,8 +30,7 @@ $(document).ready(() => {
       success: function (data) {
         let textReference = "";
         for (let key in data) {
-          textReference += ` <div class="write-events" id="event-${data[key].title}">
-          <label id="l" for="r"></label>
+          textReference += ` <div class="write-events" id="event-${data[key].title}">          
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
             <span class="content-events">${data[key].date}</span>

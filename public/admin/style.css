@@ -84,7 +84,7 @@ html{
   #events{    
     display: inline-block;   
   }
-  #event-button, #user-button, #logout-button, #send-events, #cancel-events, #cancel-user, #send-user, #listUsers-button, #listEventos-button, #listEvents-button, #cadastrarNoEvento-button, #home, #sair{
+  #event-button, #user-button, #logout-button, #send-events, #cancel-events, #cancel-user, #send-user, #listUsers-button, #listEventos-button, #listEvents-button, #cadastrarNoEvento-button, #confirmarCadastrarNoEvento-button, #sair{
     width: 200px;
     height: 35px;
     color: #fffffff2;
