@@ -30,12 +30,12 @@ $(document).ready(() => {
       success: function (data) {
         let textReference = "";
         for (let key in data) {
-          textReference += ` <div class="write-events" id="event-${data[key].title}">          
+          textReference += ` <div class="write-events" id="event-${data[key].title}">
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
-            <span class="content-events">${data[key].date}</span>
-            <span class="content-events">${data[key].time} h</span>
-            <span class="content-events" >${data[key].location}</span>
+            <span class="content-events">Data do Evento: ${data[key].date}</span>
+            <span class="content-events">Horário: ${data[key].time} h</span>
+            <span class="content-events" >Local: ${data[key].location}</span>       
             <input type="button" class="event-button" data-event-id="${data[key].id}" data-event-title="${data[key].title}" id="cadastrarNoEvento-${data[key].id}" value="Verificar evento" />                                  
           </div>`;
         }
@@ -51,7 +51,10 @@ $(document).ready(() => {
             success: function (data) {
               $("#actual-event").html(data.htmlText);
               if (data.exists === true && data.used === false) {
-                console.log("data.qrcode: ", data.qrcode);
+                console.log(
+                  "Clique aqui para acessar o link do QR Code: ",
+                  data.qrcode
+                );
                 let qr = qrcode(4, "L");
                 qr.addData(data.qrcode);
                 qr.make();
@@ -88,5 +91,6 @@ $(document).ready(() => {
       },
     });
   };
+
   loadEvents();
 });

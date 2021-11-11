@@ -48,7 +48,7 @@ html{
     font-family: 'Staatliches';
     letter-spacing: 0.3em;
   }
-  #content{
+ #content{
     display: flex;
     flex-direction:column;
     justify-content: center;
@@ -64,37 +64,7 @@ html{
   }
   button:hover{
     filter: opacity(0.9);
-  }  
-  #events{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-   .write-events{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-    border-radius: 30px;
-    border: none;
-    background-color: #353535;
-    width: 200px;
-    height: 200px;
-    margin: 5px;
-  }
-  .button-events{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 5px;
-    border-radius: 30px;
-    border: none;
-    background-color: #3eb6e2;
-    width: 400px;
-    height: 400px;
-    margin: 5px;  }
- 
+  } 
   .content-events{
     line-break: normal;
     color: #ffffff;
@@ -105,15 +75,11 @@ html{
     width: 200px;
     height: 35px;
     color: #fffffff2;
-    font-family: 'Staatliches';
     font-size: 20px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     margin: 1vh auto
-  }
-  .event-button{
-    background-color: #38A5CE;
   }
   .check-button{
     background-color: #014056;
@@ -132,5 +98,8 @@ html{
   border-radius: 30px;
   background-color: #3eb6e2;
   width: 400px;
-  height: 100%;
+  height: 400px;
+}
+.event-button{
+  background-color: #207D36;
 }

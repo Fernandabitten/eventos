@@ -76,7 +76,6 @@ html{
     background-repeat: no-repeat;
     border-radius: 10px;
     width: 100%;
-
     padding: 10px;
     margin: 10px 0;
     box-shadow: 5px 5px 50px rgba(255, 255, 255, 0.1);
@@ -84,7 +83,7 @@ html{
   #events{    
     display: inline-block;   
   }
-  #event-button, #user-button, #logout-button, #send-events, #cancel-events, #cancel-user, #send-user, #listUsers-button, #listEventos-button, #listEvents-button, #cadastrarNoEvento-button, #confirmarCadastrarNoEvento-button, #sair{
+  .button, #sair{
     width: 200px;
     height: 35px;
     color: #fffffff2;
@@ -94,8 +93,8 @@ html{
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    margin: 1vh auto;    
-  }
+    margin: 1vh auto; 
+  }  
   button:hover{
     filter: opacity(0.9);
   }
@@ -107,7 +106,6 @@ html{
   }
   #textareawrite, #textareaUser, #textareaListUsers, #textareaRegisterEvents{
     z-index: 100;
-    margin: auto;
     position: absolute;
     width:400px;
     height: 100%;
@@ -185,11 +183,5 @@ html{
     color: white;
   }
   #cadastrarNoEvento-button{
-    background-color: #3eb6e2; 
-  }
-  #l {
-    display:block;
-    width:32px;
-    height:32px;
-    background:url(../img/halloween.svg)
+    background-color: #0063E5; 
   }

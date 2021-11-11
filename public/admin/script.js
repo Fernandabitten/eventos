@@ -1,7 +1,3 @@
-let currentEventId = null;
-const registerInEvent = (id) => {
-  currentEventId = id;
-};
 $(document).ready(() => {
   $.ajax({
     url: "/verify",
@@ -24,23 +20,6 @@ $(document).ready(() => {
         console.log("logged out");
       },
     });
-  });
-
-  $("#confirmarCadastrarNoEvento-button").on("click", function () {
-    $.ajax({
-      url: "/register-user-event",
-      type: "POST",
-      data: {
-        id: currentEventId,
-      },
-      success: function (data) {
-        console.log(data);
-      },
-    });
-  });
-
-  $("#events").on("click", function () {
-    $("#textareaRegisterEvents").css("display", "flex");
   });
 
   $("#event-button").on("click", function () {
@@ -79,15 +58,12 @@ $(document).ready(() => {
   });
 
   $("#cancel-user").on("click", function () {
+    $("#msg-err").html("");
     $("#textareaUser").css("display", "none");
   });
 
   $("#home").on("click", function () {
     $("#textareaListUsers").css("display", "none");
-  });
-
-  $("#sair").on("click", function () {
-    $("#textareaRegisterEvents").css("display", "none");
   });
 
   $("#send-events").on("click", function () {
@@ -140,12 +116,16 @@ $(document).ready(() => {
         $("#user-content").val("");
         $("#textareaUser").css("display", "none");
       },
+      error: function () {
+        $("#msg-err").html(`
+        <p>Usuário já possui cadastro</p>`);
+      },
     });
     $("#fullname").val("");
     $("#username").val("");
     $("#password").val("");
   });
- 
+
   const loadEvents = () => {
     $.ajax({
       url: "/events",
@@ -158,18 +138,19 @@ $(document).ready(() => {
         }
         let textReference = "";
         for (let key in data) {
-          textReference += `  <div class="write-events" id="event-${data[key].title}">    
+          textReference += `  <div class="write-events" id="event-${data[key].title}">
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
-            <span class="content-events">${data[key].date}</span>
-            <span class="content-events">${data[key].time} h</span>
-            <span class="content-events" >${data[key].location}</span>
-            <button type='button' onClick="registerInEvent('${data[key].id}')" id="cadastrarNoEvento-button">Cadastrar no Evento</button>                                   
+            <span class="content-events">Data do Evento: ${data[key].date}</span>
+            <span class="content-events">Horário: ${data[key].time} h</span>
+            <span class="content-events" >Local: ${data[key].location}</span>
+            <span class="content-events" >Número de Inscritos: <br />${data[key].users.length}</span>
           </div>`;
         }
         $("#events").html(textReference);
       },
     });
   };
+
   loadEvents();
 });

@@ -8,21 +8,19 @@ $(document).ready(() => {
         type: "POST",
         data: { username: user, password: password },
         success: function (data) {
-          window.location.replace(`${data}`);    
+          window.location.replace(`${data}`);
         },
-        error: function() {
+        error: function () {
           $("#msg-err").html(`
-          <p>Usuário ou senha inválida. Por favor, tente novamente.</p>`  
-          )  
-        }
+            <p>Usuário ou senha inválida. Por favor, tente novamente.</p>`);
+        },
       });
     } else {
       $("#msg-err").html(`
-      <p>Por favor, preencha todos os campos.</p>`
-      );
-    };
+        <p>Por favor, preencha todos os campos.</p>`);
+    }
     setTimeout(() => {
       $("#msg-err").html(``);
     }, 1500);
   });
-}); 
+});

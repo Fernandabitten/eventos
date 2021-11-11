@@ -7,4 +7,4 @@ login: admin
 password: 123
 
 #objective
-qr code generator and session management testing using js, nodejs, express, bcrypt, cookie-parser and qrcode-generator
+qr code generator and session management testing using js, nodejs, express, bcrypt, cookie-parser, qrcode-generator and JWT

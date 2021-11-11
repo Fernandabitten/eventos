@@ -7,31 +7,31 @@
     "usertype": "admin"
   },
   {
-    "username": "ermerson",
-    "fullname": "ERMERSON CAMARAO LIMA",
-    "hash": "$2b$13$bwDEe0ujWNJNTjXFhC/s5ev6U.gsWkVpapE5tictrr0EDMarljOC.",
-    "salt": "$2b$13$bwDEe0ujWNJNTjXFhC/s5e",
-    "usertype": "user"
-  },
-  {
-    "username": "fernanda",
-    "fullname": "FERNANDA BITTENCOURT",
-    "hash": "$2b$13$33cHSBZoFP1hz.ofKZw0lOrfMqJU.jaazh87IX1nmN20QYQOAnzXm",
-    "salt": "$2b$13$33cHSBZoFP1hz.ofKZw0lO",
+    "username": "nanda",
+    "fullname": "Fernanda Bittencourt",
+    "hash": "$2b$13$4K1xIrvFZpWWlxB4iGXY9e4GYzyXYh/gIhEWfOEt5snWCMk2/gaFa",
+    "salt": "$2b$13$4K1xIrvFZpWWlxB4iGXY9e",
     "usertype": "user"
   },
   {
     "username": "teste",
     "fullname": "Teste da Silva",
-    "hash": "$2b$13$sggxAavurLnUhh1hm4J5O.HC8VOf.BzRRy3yM0TFBxH3AFdPjnjoC",
-    "salt": "$2b$13$sggxAavurLnUhh1hm4J5O.",
+    "hash": "$2b$13$wZc6yDN913v47XapGmdX/.7fRqx1pHR9VtVwIcf/iKeuEfbPf.UDK",
+    "salt": "$2b$13$wZc6yDN913v47XapGmdX/.",
     "usertype": "user"
   },
   {
-    "username": "jose",
-    "fullname": "Jose da Silva",
-    "hash": "$2b$13$e7GhiyKbjmIDO1DKdFqJzu0z5CxX1Jy73eKJXqdYOV2mah2UxIMyq",
-    "salt": "$2b$13$e7GhiyKbjmIDO1DKdFqJzu",
+    "username": "Maria",
+    "fullname": "Maria da Silva",
+    "hash": "$2b$13$wIagTyJF1L8/A9wSRK9EYOUZHq/1.0jDbUu5AiBZwCoo.vROs9mEC",
+    "salt": "$2b$13$wIagTyJF1L8/A9wSRK9EYO",
+    "usertype": "user"
+  },
+  {
+    "username": "",
+    "fullname": "",
+    "hash": "$2b$13$UTAMf2DN38ca/ng4nEKEB.X4CDqFc1fC9Rm66y/WT7VzML8l8vWie",
+    "salt": "$2b$13$UTAMf2DN38ca/ng4nEKEB.",
     "usertype": "user"
   }
 ]
