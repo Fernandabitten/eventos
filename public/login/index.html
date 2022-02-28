@@ -14,28 +14,30 @@
   </head>
 
   <body>
-    <div id="verticalColumn">
-      <div id="horizontalColumn">
-        <div id="container">
-          <img src="../img/logo.png" alt="Eventos logo" />
-          <div id="content-form">
-            <input
-              type="text"
-              name="user"
-              id="user"
-              required
-              placeholder="Usuário"
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              placeholder="Senha"
-            />
-            <button id="login-button">Login</button>
+    <div class="loginContainer">
+      <div id="verticalColumn">
+        <div id="horizontalColumn">
+          <div id="container">
+            <img src="../img/logo.png" alt="Eventos logo" class="imgLogo" />
+            <div id="content-form">
+              <input
+                type="text"
+                name="user"
+                id="user"
+                required
+                placeholder="Usuário"
+              />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                placeholder="Senha"
+              />
+              <button id="login-button">Login</button>
+            </div>
+            <div id="msg-err"></div>
           </div>
-          <div id="msg-err"></div>
         </div>
       </div>
     </div>

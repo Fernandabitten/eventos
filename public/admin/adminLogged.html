@@ -23,11 +23,11 @@
       <span>Data</span>
       <input type="date" id="event-date" min="2018-06-07" />
       <span>Hora</span>
-      <input type="time" id="event-time" min="0" max="23" />
+      <input type="number" id="event-time" min="0" max="23" />
       <span>Localização</span>
       <input type="text" id="event-place" />
-      <button class="button" id="send-events">Cadastrar</button>
-      <button class="button" id="cancel-events">Sair</button>
+      <button id="send-events">Cadastrar</button>
+      <button id="cancel-events">Sair</button>
     </div>
 
     <div id="textareaUser">
@@ -38,15 +38,15 @@
       <input type="text" id="username" />
       <span>Senha</span>
       <input type="password" id="password" />
-      <button class="button" id="send-user">Cadastrar</button>
-      <button class="button" id="cancel-user">Sair</button>
+      <button id="send-user">Cadastrar</button>
+      <button id="cancel-user">Sair</button>
       <div id="msg-err"></div>
     </div>
 
     <div id="textareaListUsers">
       <h1>Usuários Cadastrados</h1>
       <div id="users"></div>
-      <button class="button" id="home">Sair</button>
+      <button id="home">Sair</button>
     </div>
 
     <div id="container">
@@ -57,7 +57,7 @@
         <div></div>
         <img alt="" />
         <div>
-          <button class="button" id="logout-button">Logout</button>
+          <button id="logout-button">Logout</button>
         </div>
       </header>
       <div id="title">
@@ -65,13 +65,13 @@
       </div>
       <div id="content">
         <div>
-          <button type="button" class="button" id="event-button">Add Evento</button>
+          <button type="button" id="event-button">Add Evento</button>
         </div>
         <div>
-          <button type="button" class="button" id="user-button">Add Usuário</button>
+          <button type="button" id="user-button">Add Usuário</button>
         </div>
         <div>
-          <button type="button" class="button" id="listUsers-button">Ver Usuários</button>
+          <button type="button" id="listUsers-button">Ver Usuários</button>
         </div>
       </div>
       <div id="allEvents">

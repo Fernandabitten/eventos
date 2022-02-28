@@ -141,10 +141,9 @@ $(document).ready(() => {
           textReference += `  <div class="write-events" id="event-${data[key].title}">
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
-            <span class="content-events">Data do Evento: ${data[key].date}</span>
-            <span class="content-events">Horário: ${data[key].time} h</span>
-            <span class="content-events" >Local: ${data[key].location}</span>
-            <span class="content-events" >Número de Inscritos: <br />${data[key].users.length}</span>
+            <span class="content-events">${data[key].date}</span>
+            <span class="content-events">${data[key].time} h</span>
+            <span class="content-events" >${data[key].location}</span>
           </div>`;
         }
         $("#events").html(textReference);

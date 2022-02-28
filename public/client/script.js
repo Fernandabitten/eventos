@@ -33,9 +33,9 @@ $(document).ready(() => {
           textReference += ` <div class="write-events" id="event-${data[key].title}">
             <span class="content-events" >${data[key].title}</span>
             <span class="content-events">${data[key].description}</span>
-            <span class="content-events">Data do Evento: ${data[key].date}</span>
-            <span class="content-events">Horário: ${data[key].time} h</span>
-            <span class="content-events" >Local: ${data[key].location}</span>       
+            <span class="content-events">${data[key].date}</span>
+            <span class="content-events">${data[key].time} h</span>
+            <span class="content-events" >${data[key].location}</span>
             <input type="button" class="event-button" data-event-id="${data[key].id}" data-event-title="${data[key].title}" id="cadastrarNoEvento-${data[key].id}" value="Verificar evento" />                                  
           </div>`;
         }
