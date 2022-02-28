@@ -3,7 +3,7 @@
 </div>
 
 Alpha EdTech project's activity about session management.<br/>
-Click <a href="https://lima-bittencourt-eventos.herokuapp.com/">aqui</a>  to access <br/>
+Click <a href="https://lima-bittencourt-eventos.herokuapp.com/" target="_blank">aqui</a>  to access <br/>
 
 <strong>Control</strong><br/>
 Just the admin can register new users and events.<br/>
